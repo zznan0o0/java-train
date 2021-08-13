@@ -9,8 +9,8 @@ public class App {
 
         p1.setAge(20);
         p2.setName("zs");
-        HandleData<P1, P2> handleData = new HandleData<P1, P2>();
-        p1 = handleData.add(p1, p2);
-        System.out.println(p1);
+//        HandleData<P1, P2> handleData = new HandleData<P1, P2>();
+//        p1 = handleData.add(p1, p2);
+//        System.out.println(p1);
     }
 }

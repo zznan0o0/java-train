@@ -20,5 +20,7 @@ public class ListTrain {
         delList.removeAll(list2);
         System.out.println(delList);
         System.out.println(list1);
+
+
     }
 }
