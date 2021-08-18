@@ -8,16 +8,44 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class HandleData <T1, T2, T3>{
-    public List<T3> mapDictDict(List<T1> t1List, List<T2> t2List, List<String> ks1, List<String> ks2, MapDictDictFn fn) throws Exception {
-        Map<String, T2> t2Map = this.<T2>convertDict(t2List, ks2);
+public class HandleData {
+
+    public <T1, T2> List<T1> setListProps(List<T1> t1List, List<T2> t2List, List<String> ks1, List<String> ks2, Map<String, String> props) throws Exception {
+        return this.mapDictDict(t1List, t2List, ks1, ks2,  (T1 x1, T2 x2, String k) -> {
+            Class<?> clzX1 = x1.getClass();
+            Class<?> clzX2 = x2.getClass();
+
+            for(String propsKey : props.keySet()){
+                Field f1 = clzX1.getDeclaredField(propsKey);
+                f1.setAccessible(true);
+                Field f2 = clzX2.getDeclaredField(props.get(propsKey));
+                f2.setAccessible(true);
+                f1.set(x1, f2.get(x2));
+            }
+            return x1;
+        });
+    }
+
+    public <T1, T2, T3> List<T3> mapDictDict(List<T1> t1List, List<T2> t2List, List<String> ks1, List<String> ks2, MapDictDictFn<T1,T2,T3> fn) throws Exception {
+        Map<String, T2> t2Map = this.convertDict(t2List, ks2);
         List<T3> t3List = new ArrayList<>();
         for(T1 t1 : t1List){
             String key = this.convertKey(t1, ks1);
-            t3List.add((T3) fn.apply(t1, t2Map.get(key), key));
+            t3List.add(fn.apply(t1, t2Map.get(key), key));
         }
 
         return t3List;
+    }
+
+    public <T1, T2> List<T1> mapDictDict(List<T1> t1List, List<T2> t2List, List<String> ks1, List<String> ks2, MapDictDitc2TFn<T1,T2> fn) throws Exception {
+        Map<String, T2> t2Map = this.convertDict(t2List, ks2);
+        List<T1> resultList = new ArrayList<>();
+        for(T1 t1 : t1List){
+            String key = this.convertKey(t1, ks1);
+            resultList.add(fn.apply(t1, t2Map.get(key), key));
+        }
+
+        return resultList;
     }
 
 
@@ -32,7 +60,7 @@ public class HandleData <T1, T2, T3>{
     }
 
     public <T> String convertKey(T t, List<String> ks) throws Exception {
-        Class clz = t.getClass();
+        Class<?> clz = t.getClass();
         List<String> list = new ArrayList<>();
         for(String k : ks){
             Field f = clz.getDeclaredField(k);
@@ -48,36 +76,4 @@ public class HandleData <T1, T2, T3>{
 
         return StringUtils.join(list, ",");
     }
-
-
-
-
-//    public  T1 add(T1 t1, T2 t2) throws Exception {
-//        (String) t1.name = (String) t2.name;
-//        Class t1Cla = (Class) t1.getClass();
-//        Class t2Cla = (Class) t2.getClass();
-//        Field t2Name = t2Cla.getDeclaredField("name");
-//        t2Name.setAccessible(true);
-//        System.out.println();
-//        Field[] fs = t1Cla.getDeclaredFields();
-//        Field f = fs[1];
-//        String fn = f.getName();
-
-//        Field t1Name = t1Cla.getDeclaredField("name");
-//        t1Name.setAccessible(true);
-//        t1Name.set(t1, t2Name.get(t2));
-
-//        for(int i = 0 ; i < fs.length; i++){
-//            System.out.println(fs[i]);
-//        }
-//        f.setAccessible(true); //设置些属性是可以访问的
-//        Object val = f.get(t1);
-//        System.out.println(fn);
-//        System.out.println(val);
-//        f.set(t1, 30);
-
-
-//        return t1;
-        // return new Pair<K>(first, last);
-//    }
 }

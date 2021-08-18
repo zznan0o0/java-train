@@ -4,7 +4,9 @@ import lombok.Data;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 
 class MapDictDictFnImp implements MapDictDictFn<ET1, ET2, ET3>{
@@ -19,9 +21,9 @@ public class HandleDataTest {
     @Test
     public void test() throws Exception {
         long startTime = System.currentTimeMillis();
-        HandleData<ET1, ET2, ET3> handleData = new HandleData();
+        HandleData handleData = new HandleData();
         List<ET1> t1List = new ArrayList<ET1>(){{
-            for(int i = 0; i <1000000; i++){
+            for(int i = 0; i <10; i++){
                 ET1 t1 = new ET1();
                 t1.setId(i);
                 t1.setId2(i);
@@ -30,7 +32,7 @@ public class HandleDataTest {
             }
         }};
         List<ET2> t2List = new ArrayList<ET2>(){{
-            for(int i = 0; i < 1000000; i++){
+            for(int i = 0; i < 10; i++){
                 ET2 t2 = new ET2();
                 t2.setId(i);
                 t2.setId2(i);
@@ -52,6 +54,7 @@ public class HandleDataTest {
 
         MapDictDictFn<ET1,ET2, ET3> h = HandleDataTest::handle;
         List<ET3> t3List =  handleData.mapDictDict(t1List, t2List, ks, ks, h);
+        System.out.println(t3List);
         long endTime1 = System.currentTimeMillis();
         System.out.println("运行时间:" + (endTime1 - startTime1) + "ms");
 //        System.out.println(t3List);
@@ -62,8 +65,38 @@ public class HandleDataTest {
 
     }
 
+    @Test
+    public void test2() throws Exception {
+        HandleData handleData = new HandleData();
+        List<ET1> t1List = new ArrayList<ET1>(){{
+            for(int i = 0; i <10; i++){
+                ET1 t1 = new ET1();
+                t1.setId(i);
+                t1.setId2(i);
+                t1.setName("name" + String.valueOf(i));
+                add(t1);
+            }
+        }};
+        List<ET2> t2List = new ArrayList<ET2>(){{
+            for(int i = 0; i < 10; i++){
+                ET2 t2 = new ET2();
+                t2.setId(i);
+                t2.setId2(i);
+                t2.setAge(10+i);
+                add(t2);
+            }
+        }};
 
+        List<String> ks = new ArrayList<String>(){{
+            add("id");
+            add("id2");
+        }};
 
+        Map<String, String> props = new HashMap(){{put("age", "age");}};
+        handleData.setListProps(t1List, t2List, ks, ks, props);
+
+        System.out.println(t1List);
+    }
 
     public static MapDictDictFn<ET1, ET2, ET3> handle2 = new MapDictDictFn<ET1, ET2, ET3>() {
         @Override
@@ -97,6 +130,7 @@ class ET1{
     private Integer id;
     private Integer id2;
     private String name;
+    private Integer age;
 }
 
 @Data

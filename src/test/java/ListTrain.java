@@ -2,6 +2,8 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class ListTrain {
     @Test
@@ -20,6 +22,11 @@ public class ListTrain {
         delList.removeAll(list2);
         System.out.println(delList);
         System.out.println(list1);
+
+        Map<Integer, Integer> m = list1.stream().collect(Collectors.toMap(x -> null, x -> x, (x1, x2) -> x1));
+
+        System.out.println(m);
+
 
 
     }
