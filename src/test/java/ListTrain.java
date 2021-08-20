@@ -30,4 +30,10 @@ public class ListTrain {
 
 
     }
+
+    @Test
+    public void test(){
+        List<String> l = null;
+        System.out.println(l.size());
+    }
 }
