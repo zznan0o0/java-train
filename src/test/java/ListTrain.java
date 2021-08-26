@@ -36,4 +36,15 @@ public class ListTrain {
         List<String> l = null;
         System.out.println(l.size());
     }
+
+    @Test
+    public void test2(){
+        List<String> l = new ArrayList(){{add("aaa");}};
+        add(l);
+        System.out.println(l);
+    }
+
+    private void add(List<String> l){
+        l.add("bbb");
+    }
 }
