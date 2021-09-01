@@ -15,6 +15,7 @@ public class MapTest {
         map.put(1,2);
         System.out.println(map.get(1));
         System.out.println(map.get(2));
+        System.out.println(map.get(null));
     }
 
 
@@ -26,6 +27,9 @@ public class MapTest {
 
         List<E> list = new ArrayList(){{add(e1); add(e11); add(e2);}};
         System.out.println(this.handleMap(list, E::getId));
+        System.out.println(this.handleMap(list, E::getId2));
+        System.out.println(this.handleMap(list, E::getId3));
+
 
 
 //        this.h(e1, E::getName);
@@ -58,4 +62,12 @@ class E{
     }
     private Integer id;
     private String name;
+
+    public Integer getId2(){
+        return this.id;
+    }
+
+    public static Integer getId3(E e){
+        return e.getId();
+    }
 }
