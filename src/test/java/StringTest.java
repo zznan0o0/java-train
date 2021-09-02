@@ -95,6 +95,14 @@ public class StringTest {
     @Test
     public void test6(){
         String str = "hello";
+        char carr[] = new char[3];
+        carr[0] = '1';
+        carr[1] = '2';
+        carr[2] = '中';
+
+        System.out.println(carr);
+
+
         char c = str.charAt(0);
         char d = str.charAt(0);
         System.out.println(System.identityHashCode(c));
@@ -172,6 +180,7 @@ public class StringTest {
     @Test
     public void test9(){
         String a = "1";
+
         System.out.println(System.identityHashCode(a));
         a = String.valueOf(1);
         System.out.println(System.identityHashCode(a));
@@ -184,6 +193,7 @@ public class StringTest {
         b = String.valueOf(1);
         System.out.println(System.identityHashCode(b));
     }
+
 
 
 }
