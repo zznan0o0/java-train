@@ -194,6 +194,17 @@ public class StringTest {
         System.out.println(System.identityHashCode(b));
     }
 
+    @Test
+    public void test10(){
+        String s = "";
+        String s2 = " ";
+        System.out.println(s2.isEmpty());
+        System.out.println(s.isEmpty());
+        System.out.println(s2 == "");
+        System.out.println(s == "");
+        System.out.println(s.equals(""));
+    }
+
 
 
 }
