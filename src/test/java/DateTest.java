@@ -24,6 +24,7 @@ public class DateTest {
     public void test2() throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date date = sdf.parse("2005-12-15");
+        System.out.println(date.toString());
         System.out.println(date);
     }
 }

@@ -47,4 +47,18 @@ public class ListTrain {
     private void add(List<String> l){
         l.add("bbb");
     }
+
+    @Test
+    public void loop(){
+        List<Integer> list = new ArrayList<Integer>(){{
+            add(1);
+            add(2);
+            add(3);
+        }};
+
+        for(Integer i : list){
+            System.out.println(i);
+            if(i.equals(2)) return;
+        }
+    }
 }

@@ -1,6 +1,6 @@
 package common.utils;
 
-import com.sun.deploy.util.StringUtils;
+//import com.sun.deploy.util.StringUtils;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -74,6 +74,7 @@ public class HandleData {
             }
         }
 
-        return StringUtils.join(list, ",");
+//        return StringUtils.join(list, ",");
+        return "";
     }
 }
