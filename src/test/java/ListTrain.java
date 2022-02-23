@@ -1,11 +1,21 @@
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ListTrain {
+    @Test
+    public void testSetList(){
+        Map<Integer, Integer> map = new HashMap<>();
+        map.put(1,1);
+        map.put(2,2);
+        map.put(3,3);
+        System.out.println(map.size());
+        List<Integer> list = Arrays.asList(new Integer[map.size()]);
+        System.out.println(list);
+        list.set(0, 1);
+        System.out.println(list);
+    }
     @Test
     public void listTrain(){
         List<Integer> list1 = new ArrayList<Integer>(){{

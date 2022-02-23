@@ -1,3 +1,4 @@
+import entity.CC;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -8,6 +9,19 @@ import org.junit.Test;
 
 
 public class ClassTest{
+    @Test
+    public void testCC(){
+        CC cc = new CC();
+        CC.C1 c1 = new CC.C1();
+        CC.C2 c2 = new CC.C2();
+        cc.setC1(c1);
+        cc.setC2(c2);
+
+        System.out.println(cc);
+        System.out.println(cc.getC1());
+    }
+
+
     @Test
     public void test(){
         TestClass tc = new TestClass(18);
