@@ -5,6 +5,28 @@ import java.util.stream.Collectors;
 
 public class ListTrain {
     @Test
+    public void testSort(){
+        List<Integer> list = new ArrayList<Integer>(){{
+            add(2);
+            add(5);
+            add(1);
+            add(10);
+            add(8);
+            add(7);
+        }};
+
+        List<Integer> list1 = list.stream().sorted(Comparator.comparing(x -> x)).collect(Collectors.toList());
+        System.out.println(list);
+        System.out.println(list1);
+
+    }
+    @Test
+    public void testAsList(){
+        String[] a = new String[]{"1","2"};
+        System.out.println(Arrays.asList("1"));
+        System.out.println(Arrays.asList(a));
+    }
+    @Test
     public void testSetList(){
         Map<Integer, Integer> map = new HashMap<>();
         map.put(1,1);
@@ -71,4 +93,6 @@ public class ListTrain {
             if(i.equals(2)) return;
         }
     }
+
+
 }

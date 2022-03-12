@@ -2,6 +2,17 @@ import org.junit.Test;
 
 public class IntegerTest {
     @Test
+    public void testNull(){
+        Integer a = null;
+        System.out.println(a);
+        if(a != null){
+            System.out.println(1);
+        }
+        else {
+            System.out.println(2);
+        }
+    }
+    @Test
     public void test(){
         int a = 1;
         int b = 1;

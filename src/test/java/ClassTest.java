@@ -9,6 +9,38 @@ import org.junit.Test;
 
 
 public class ClassTest{
+    class C{
+        public Integer id = 1;
+    }
+    class D extends C{
+        public Integer id = 2;
+    }
+
+    @Test
+    public void testCD(){
+        C c = new C();
+        D d = new D();
+        System.out.println(c.id);
+        System.out.println(c);
+        System.out.println(d.id);
+        System.out.println(d);
+    }
+    @Data
+    static public class  A {
+        private Integer id;
+        private String name;
+
+    }
+
+    @Test
+    public void testSS(){
+        A a = new A(){{
+            setId(1);
+            setName("name1");
+        }};
+        System.out.println(a);
+    }
+
     @Test
     public void testCC(){
         CC cc = new CC();

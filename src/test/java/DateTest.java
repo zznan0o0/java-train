@@ -27,4 +27,10 @@ public class DateTest {
         System.out.println(date.toString());
         System.out.println(date);
     }
+    @Test
+    public void yymmdd(){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyMMdd");
+        Date date = new Date();
+        System.out.println(simpleDateFormat.format(date));
+    }
 }

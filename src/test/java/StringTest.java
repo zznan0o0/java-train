@@ -1,10 +1,61 @@
 import lombok.Data;
+import org.apache.commons.codec.binary.StringUtils;
 import org.junit.Test;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class StringTest {
+    @Test
+    public void getNo(){
+        List<String> strList = new ArrayList<String>(){{
+            add("220311.B02");
+            add("220311.B05");
+            add("220311.B03");
+        }};
+
+        List<Integer> str2List = new ArrayList<>();
+
+        for(String v : strList){
+            str2List.add(Integer.valueOf(v.substring(v.length()-2)));
+        }
+
+        System.out.println(str2List.stream().max(Comparator.comparing(x -> x)).get());
+    }
+
+    @Test
+    public void testJoin(){
+        List<Integer> list = new ArrayList<Integer>(){{
+            add(1);
+            add(1);
+            add(1);
+            add(1);
+        }};
+
+
+    }
+
+    @Test
+    public void testFix(){
+        System.out.println(String.format("%03d", 10));
+    }
+
+    @Test
+    public void testToStr(){
+        int[] ints = new int[3];
+        this.toStr(1, "1", 1L, new String[]{"1", "2"}, new int[]{1,2,3});
+    }
+
+
+    public void toStr(Object ... objs){
+
+        String s = "";
+        for(Object obj : objs){
+             s += String.valueOf(obj);
+        }
+        System.out.println(s);
+    }
+
+
     @Test
     public void test() {
         String a = "123";
@@ -205,11 +256,11 @@ public class StringTest {
         System.out.println(s.equals(""));
     }
 
-
+    @Data
+    class SE {
+        private String n;
+    }
 
 }
 
-@Data
-class SE {
-    private String n;
-}
+

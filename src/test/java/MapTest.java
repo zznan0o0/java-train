@@ -52,6 +52,23 @@ public class MapTest {
         T1 k = fn.apply(t2);
         System.out.println(k);
     }
+    @Test
+    public void test0(){
+        Map<Integer, Integer> map = new HashMap<>();
+        map.put(-0, 1);
+        map.put(0, 2);
+        System.out.println(map);
+
+        Map<Float, Integer> m2 = new HashMap<>();
+        m2.put(-0.0F, 1);
+        m2.put(0.0F, 2);
+        System.out.println(m2);
+
+        Map<Long, Integer> m3 = new HashMap<>();
+        m3.put(-0L, 1);
+        m3.put(0L, 2);
+        System.out.println(m3);
+    }
 }
 
 @Data
