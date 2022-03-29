@@ -77,4 +77,26 @@ public class StreamTest {
         System.out.println(iL);
     }
 
+    @Test
+    public void testGroup(){
+        List<String> list = new ArrayList<String>(){{
+            add("1");
+            add("1");
+            add("1");
+            add("1");
+            add("1");
+            add("2");
+            add("2");
+            add("2");
+            add("2");
+            add("3");
+            add("3");
+            add("3");
+            add("3");
+            add("3");
+        }};
+
+        System.out.println(list.stream().collect(Collectors.groupingBy(x -> x)));
+    }
+
 }

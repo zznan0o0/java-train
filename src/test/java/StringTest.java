@@ -2,9 +2,31 @@ import lombok.Data;
 import org.apache.commons.codec.binary.StringUtils;
 import org.junit.Test;
 
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class StringTest {
+    @Test
+    public void testByte(){
+        String s = "12123sdfs";
+        byte[] b = s.getBytes(StandardCharsets.UTF_8);
+        byte[] bb = new byte[0];
+        System.out.println(bb);
+        System.out.println(b);
+    }
+    @Test
+    public void testJoinSet(){
+        Set<String> s1 = new HashSet<>();
+        s1.add("1");
+        s1.add("2");
+        s1.add("3");
+        s1.add("1");
+        Set<String> s2 = new HashSet<>();
+
+        System.out.println(String.join(",", s1));
+        System.out.println(String.join(",", s2));
+    }
+
     @Test
     public void getNo(){
         List<String> strList = new ArrayList<String>(){{

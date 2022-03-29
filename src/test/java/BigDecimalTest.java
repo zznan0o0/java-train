@@ -17,4 +17,10 @@ public class BigDecimalTest {
         System.out.println(String.valueOf(a));
         System.out.println(String.valueOf(b));
     }
+    @Test
+    public void testPls(){
+        BigDecimal w = new BigDecimal("1.00");
+        BigDecimal h = new BigDecimal("2.000");
+        System.out.println(w.toString() + "*" + h);
+    }
 }

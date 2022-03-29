@@ -1,6 +1,8 @@
+import lombok.Data;
 import org.junit.Test;
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class ListTrain {
@@ -93,6 +95,47 @@ public class ListTrain {
             if(i.equals(2)) return;
         }
     }
+
+    static public <T> Map<List<Object>, T> list2MapByKeys(List<T> list, List<Function<T, Object>> fns){
+        Map<List<Object>, T> map = new HashMap<>();
+
+        for(T v : list){
+            List<Object> keys = new ArrayList<>();
+            for(Function<T, Object> fn : fns){
+                keys.add(fn.apply(v));
+            }
+            map.put(keys, v);
+        }
+
+        return map;
+    }
+
+    @Data
+    static public class A{
+        private Integer id;
+        private String name;
+        private Integer age;
+
+        public A(Integer id, String name, Integer age){
+            this.id = id;
+            this.name = name;
+            this.age = age;
+        }
+    }
+
+    @Test
+    public void testL2m(){
+        List<A> aList = new ArrayList<A>(){{
+            add(new A(1, "A1", 10));
+            add(new A(2, "A2", 10));
+            add(new A(3, "A1", 11));
+            add(new A(4, "A1", 10));
+        }};
+
+        Map<List<Object>, A> map = list2MapByKeys(aList, new ArrayList<Function<A, Object>>(){{add(A::getName);add(A::getAge);}});
+        System.out.println(map);
+    }
+
 
 
 }

@@ -68,6 +68,11 @@ public class MapTest {
         m3.put(-0L, 1);
         m3.put(0L, 2);
         System.out.println(m3);
+
+        Map<Double, Integer> m4 = new HashMap<>();
+        m4.put(-0.0D, 1);
+        m4.put(0.0D, 2);
+        System.out.println(m4);
     }
 }
 
