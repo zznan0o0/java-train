@@ -22,6 +22,37 @@ public class ReflectTest {
         System.out.println(testObj);
     }
 
+    @Data
+    static class Parent{
+        private String name;
+    }
+
+    @Data
+    static class Child extends Parent{
+        private Integer age;
+    }
+
+    @Test
+    public void testChild() throws NoSuchFieldException, IllegalAccessException {
+        Child child = new Child();
+        child.setName("aaa");
+        child.setAge(10);
+
+        Class<?> clzChild = child.getClass();
+        Field f1 = clzChild.getDeclaredField("age");//对应字段
+        System.out.println(clzChild.getDeclaredField("name"));
+        Field[] fields=clzChild.getDeclaredFields();
+        for(Field f : fields){
+            System.out.println(f.getName());
+            f.setAccessible(true);
+            f.get(child);
+        }
+        f1.setAccessible(true);//去掉限制
+        System.out.println(f1.get(child));
+        f1.set(child, f1.get(child));
+    }
+
+
 }
 
 class TestObj{

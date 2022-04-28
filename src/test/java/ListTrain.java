@@ -136,6 +136,34 @@ public class ListTrain {
         System.out.println(map);
     }
 
+    @Test
+    public void testEq(){
+        List<Integer> l1 = new ArrayList<Integer>(){{
+            add(1);
+            add(2);
+            add(3);
+        }};
+        List<Integer> l3 = new ArrayList<Integer>(){{
+            add(1);
+            add(2);
+            add(3);
+        }};
+        List<Integer> l2 = new ArrayList<Integer>(){{
+            add(3);
+            add(2);
+            add(1);
+        }};
+
+        HashMap<List<Integer>, Integer> map = new HashMap<>();
+        map.put(l1, 1);
+        map.put(l2, 2);
+        map.put(l3, 3);
+        System.out.println(map);
+
+        System.out.println(l1.equals(l2)); //false
+        System.out.println(l1.equals(l3)); // true
+    }
+
 
 
 }

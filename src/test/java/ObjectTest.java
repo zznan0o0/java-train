@@ -1,3 +1,4 @@
+import lombok.Data;
 import org.junit.Test;
 
 import java.util.*;
@@ -65,5 +66,26 @@ public class ObjectTest {
         }
 
         System.out.println(list.equals(llist));
+    }
+
+    @Data
+    public static class Op{
+        private String op;
+    }
+
+    @Test
+    public void testOptional(){
+        Op op = new Op();
+        Op op1 = new Op(){{
+            setOp("123");
+        }};
+        Op op2 = null;
+
+        String r = Optional.ofNullable(op).map(Op::getOp).orElse("");
+        String r1 = Optional.ofNullable(op1).map(Op::getOp).orElse("1");
+        String r2 = Optional.ofNullable(op2).map(x -> x.getOp()).orElse("2");
+        System.out.println(r);
+        System.out.println(r1);
+        System.out.println(r2);
     }
 }

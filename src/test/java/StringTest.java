@@ -282,6 +282,11 @@ public class StringTest {
     class SE {
         private String n;
     }
+    @Test
+    public void testSplitEmpty(){
+        String[] arr = "1".split(",");
+        System.out.println(Arrays.toString(arr));
+    }
 
 }
 
