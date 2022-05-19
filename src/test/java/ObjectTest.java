@@ -88,4 +88,10 @@ public class ObjectTest {
         System.out.println(r1);
         System.out.println(r2);
     }
+    @Test
+    public void testEqLI(){
+        Long l = 0L;
+        Integer i = 0;
+        System.out.println(l.equals(i));;
+    }
 }
