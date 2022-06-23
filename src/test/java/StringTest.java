@@ -287,6 +287,15 @@ public class StringTest {
         String[] arr = "1".split(",");
         System.out.println(Arrays.toString(arr));
     }
+    @Test
+    public void testFormat(){
+        System.out.println(String.format("asdasd",1,2,3));
+    }
+    @Test
+    public void testUUId(){
+        System.out.println(UUID.randomUUID().toString());
+        System.out.println(System.currentTimeMillis());
+    }
 
 }
 

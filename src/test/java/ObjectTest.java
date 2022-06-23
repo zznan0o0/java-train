@@ -94,4 +94,9 @@ public class ObjectTest {
         Integer i = 0;
         System.out.println(l.equals(i));;
     }
+
+    @Test
+    public void eqNull(){
+        System.out.println(Objects.equals(null, null));
+    }
 }
