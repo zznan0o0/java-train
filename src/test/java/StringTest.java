@@ -4,6 +4,8 @@ import org.junit.Test;
 
 import java.nio.charset.StandardCharsets;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class StringTest {
     @Test
@@ -295,6 +297,18 @@ public class StringTest {
     public void testUUId(){
         System.out.println(UUID.randomUUID().toString());
         System.out.println(System.currentTimeMillis());
+    }
+    @Test
+    public void toS(){
+        Pattern pattern = Pattern.compile("\\d+");
+        Matcher m = pattern.matcher("V123w4dsg5");
+//        String s = m.replaceAll("").trim();
+        if(m.find()){
+            System.out.println(m.group(0));
+        }
+//        System.out.println(s);
+//        System.out.println(Integer.valueOf("1000"));
+//        System.out.println(Integer.valueOf("0001"));
     }
 
 }

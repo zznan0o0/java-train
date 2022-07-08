@@ -1,10 +1,7 @@
 import lombok.Data;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 
 public class MapTest {
@@ -73,6 +70,37 @@ public class MapTest {
         m4.put(-0.0D, 1);
         m4.put(0.0D, 2);
         System.out.println(m4);
+    }
+    @Test
+    public void testArray(){
+        Object[] a = new Object[]{new Integer(1),"1", 1L};
+        Object[] b = new Object[]{new Integer(1),"1", 1L};
+        System.out.println(a == b);
+        Map<Object[], Integer> m1 = new HashMap<>();
+        m1.put(a, 1);
+        System.out.println(m1.get(b));
+
+
+
+    }
+    @Test
+    public void linkTest(){
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>(){{
+           put(1,1);
+           put(3,3);
+           put(2,2);
+        }};
+
+        Map<Integer, Integer> map2 = new LinkedHashMap<Integer, Integer>(){{
+            put(1,1);
+            put(3,3);
+            put(2,2);
+        }};
+
+        System.out.println(map);
+        System.out.println(map2);
+        System.out.println(map2.keySet());
+        System.out.println(map2.values());
     }
 }
 

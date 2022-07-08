@@ -164,6 +164,26 @@ public class ListTrain {
         System.out.println(l1.equals(l3)); // true
     }
 
+    @Test
+    public void testClear(){
+        List<Integer> list = new ArrayList<Integer>(){{
+            add(1);
+            add(2);
+        }};
+        List<Integer> list2 = new ArrayList<Integer>(){{
+            add(3);
+            add(4);
+        }};
+
+        System.out.println(list);
+        list.clear();;
+        System.out.println(list);
+        list.addAll(list2);
+        System.out.println(list);
+        list.clear();
+        System.out.println(list2);
+    }
+
 
 
 }

@@ -131,5 +131,27 @@ public class ClassTest{
             return "apple2";
         }
     }
+
+    @Data
+    static class P{
+      private String name;
+      private Integer age;
+    }
+    @Data
+    static class PC extends P{
+        private String chinaName;
+    }
+    @Test
+    public void ppc(){
+
+        PC pC = new PC(){{
+            setName("a");
+            setAge(12);
+            setChinaName("小啊");
+        }};
+        P p = pC;
+        System.out.println(pC);
+        System.out.println(p);
+    }
 }
 

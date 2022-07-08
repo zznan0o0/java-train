@@ -23,4 +23,8 @@ public class BigDecimalTest {
         BigDecimal h = new BigDecimal("2.000");
         System.out.println(w.toString() + "*" + h);
     }
+    @Test
+    public void testCN(){
+        System.out.println(BigDecimal.ZERO.compareTo(null));
+    }
 }
