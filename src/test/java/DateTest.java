@@ -3,7 +3,10 @@ import org.junit.Test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.LinkedHashMap;
 
 public class DateTest {
     @Test
@@ -32,5 +35,17 @@ public class DateTest {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyMMdd");
         Date date = new Date();
         System.out.println(simpleDateFormat.format(date));
+    }
+    @Test
+    public void testLocalDate(){
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd");
+
+        LocalDate now = LocalDate.now();
+        System.out.println(now.format(dateTimeFormatter));
+        LinkedHashMap<String, Integer> map = new LinkedHashMap<>();
+        for(int i = 6; i >= 0; i--){
+            map.put(now.minusDays(i).format(dateTimeFormatter), i);
+        }
+        System.out.println(map);
     }
 }

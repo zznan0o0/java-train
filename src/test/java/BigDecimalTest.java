@@ -27,4 +27,7 @@ public class BigDecimalTest {
     public void testCN(){
         System.out.println(BigDecimal.ZERO.compareTo(null));
     }
+    @Test
+    public void testTen(){
+    }
 }
