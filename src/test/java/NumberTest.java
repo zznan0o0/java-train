@@ -24,6 +24,12 @@ public class NumberTest {
         String value();
     }
 
+    @Target({ElementType.FIELD})
+    @Retention(RetentionPolicy.RUNTIME)
+    @Documented
+    public @interface DigitShallHandleField{
+    }
+
     @Data
     public static class DigitScheme{
         private List<Method> getMethodList = new ArrayList<>();
@@ -32,6 +38,7 @@ public class NumberTest {
         private List<Integer> digitList = new ArrayList<>();
         private List<Field> listFields = new ArrayList<>();
         private List<Method> getListFieldMethodList = new ArrayList<>();
+        private List<Method> shallHandleFieldGetMethodList = new ArrayList<>();
         //是否收集完成
         private Boolean flag = false;
     }
@@ -50,10 +57,10 @@ public class NumberTest {
                     //字类优先级比父级高所以以子级为准
                     fieldNameSet.add(f.getName());
                     String fieldUpName = Character.toUpperCase(f.getName().charAt(0)) + f.getName().substring(1);
-                    if(Collection.class.isAssignableFrom(f.getType())){
-                        digitScheme.getListFields().add(f);
-                        digitScheme.getGetListFieldMethodList().add(clazz.getMethod("get" + fieldUpName));
-                    }
+//                    if(Collection.class.isAssignableFrom(f.getType())){
+//                        digitScheme.getListFields().add(f);
+//                        digitScheme.getGetListFieldMethodList().add(clazz.getMethod("get" + fieldUpName));
+//                    }
 
                     if (f.isAnnotationPresent(DigitHandleCol.class) && f.getType().isAssignableFrom(BigDecimal.class)){
                         digitScheme.getFieldList().add(f);
@@ -68,6 +75,9 @@ public class NumberTest {
                         else {
                             digitScheme.getDigitList().add(Integer.parseInt(digitHandleCol.value()) * Integer.parseInt(digitHandleModule.value()));
                         }
+                    }
+                    else if(f.isAnnotationPresent(DigitShallHandleField.class)){
+                        digitScheme.getShallHandleFieldGetMethodList().add(clazz.getMethod("get" + fieldUpName));
                     }
                 }
             }
@@ -98,7 +108,7 @@ public class NumberTest {
 
 
             handleDigit(obj, digitScheme);
-            handleCollectionField(obj, digitSchemeMap, clazz.getName());
+            handleShallDigitField(obj, digitSchemeMap, clazz.getName());
         }
     }
     //处理集合
@@ -123,19 +133,36 @@ public class NumberTest {
                 Collection<Object> objects = (Collection<Object>) obj;
                 for(Object object : objects){
                     handleDigit(object, digitScheme);
-                    handleCollectionField(object, digitSchemeMap, clazz.getName());
+                    handleShallDigitField(object, digitSchemeMap, clazz.getName());
                 }
             }
         }
     }
     //处理集合字段
-    public void handleCollectionField(Object object, Map<String, DigitScheme> digitSchemeMap, String className) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
+//    public void handleCollectionField(Object object, Map<String, DigitScheme> digitSchemeMap, String className) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
+//        DigitScheme digitScheme = digitSchemeMap.get(className);
+//        if(digitScheme.getGetListFieldMethodList().size() > 0){
+//            for(int i = 0; i < digitScheme.getGetListFieldMethodList().size(); i++){
+//                Object fieldObjs = digitScheme.getGetListFieldMethodList().get(i).invoke(object);
+//                if(fieldObjs != null){
+//                    handleCollection(fieldObjs, digitSchemeMap);
+//                }
+//            }
+//        }
+//    }
+    //处理集合、对象字段
+    public void handleShallDigitField(Object obj, Map<String, DigitScheme> digitSchemeMap, String className) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
         DigitScheme digitScheme = digitSchemeMap.get(className);
-        if(digitScheme.getGetListFieldMethodList().size() > 0){
-            for(int i = 0; i < digitScheme.getGetListFieldMethodList().size(); i++){
-                Object fieldObjs = digitScheme.getGetListFieldMethodList().get(i).invoke(object);
-                if(fieldObjs != null){
-                    handleCollection(fieldObjs, digitSchemeMap);
+
+        for(int i = 0; i < digitScheme.getShallHandleFieldGetMethodList().size(); i++){
+            Object fieldObj = digitScheme.getShallHandleFieldGetMethodList().get(i).invoke(obj);
+            if(fieldObj != null){
+                System.out.println(fieldObj);
+                if(fieldObj instanceof Collection){
+                    handleCollection(fieldObj, digitSchemeMap);
+                }
+                else {
+                    handleObj(fieldObj, digitSchemeMap);
                 }
             }
         }
@@ -180,6 +207,7 @@ public class NumberTest {
         @DigitHandleModule("2")
         private BigDecimal n3;
 
+        @DigitShallHandleField
         private List<NCD> list;
     }
 
