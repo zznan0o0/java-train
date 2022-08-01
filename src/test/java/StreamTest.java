@@ -2,9 +2,7 @@ import lombok.Data;
 import org.junit.Test;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -97,6 +95,22 @@ public class StreamTest {
         }};
 
         System.out.println(list.stream().collect(Collectors.groupingBy(x -> x)));
+    }
+    @Data
+    public static class MM{
+        private String k = null;
+        private String v = null;
+    }
+    @Test
+    public void testToMap(){
+        List<MM> mmList = new ArrayList<MM>(){{
+            add(new MM());
+            add(new MM());
+            add(new MM());
+        }};
+
+        Map<String, String> map = mmList.stream().collect(HashMap::new, (m, v) -> m.put(v.getK(), v.getV()), HashMap::putAll);
+        System.out.println(map);
     }
 
 }
