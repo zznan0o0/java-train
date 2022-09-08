@@ -60,4 +60,10 @@ public class IntegerTest {
         System.out.println(a >= b);
         System.out.println(a <= b);
     }
+    @Test
+    public void test5(){
+        int a = 1;
+        int b = 3;
+        System.out.println((int)Math.ceil((float)a / b));
+    }
 }

@@ -112,5 +112,26 @@ public class StreamTest {
         Map<String, String> map = mmList.stream().collect(HashMap::new, (m, v) -> m.put(v.getK(), v.getV()), HashMap::putAll);
         System.out.println(map);
     }
+    @Data
+    public static class A{
+        private String a;
+    }
+
+    @Test
+    public void testSet(){
+        List<A> aList = new ArrayList<A>(){{
+            add(new A(){{
+                setA("123");
+            }});
+        }};
+
+        System.out.println(aList);
+
+        List<A> b = aList.stream().filter(x -> true).collect(Collectors.toList());
+        System.out.println(b);
+        b.get(0).setA("456");
+        System.out.println(aList);
+        System.out.println(b);
+    }
 
 }

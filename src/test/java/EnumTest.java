@@ -62,4 +62,21 @@ public class EnumTest {
 
         return map;
     }
+
+    @AllArgsConstructor
+    @Getter
+    public enum EE {
+        Default("default");
+        private String fieldName;
+
+        public String getDefault(){
+            return Default.getFieldName();
+        }
+    }
+    @Test
+    public void testEE(){
+        for (EE e : EE.values()){
+            System.out.println(e.name());
+        }
+    }
 }

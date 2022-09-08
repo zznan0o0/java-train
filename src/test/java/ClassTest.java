@@ -153,5 +153,18 @@ public class ClassTest{
         System.out.println(pC);
         System.out.println(p);
     }
+    @Data
+    public static class A1{
+        A1(){}
+        A1(String name){
+            this.name = name;
+        }
+        private String name;
+    }
+    @Test
+    public void testA1(){
+        A1 a1 = new A1();
+        A1 a11 = new A1("");
+    }
 }
 
