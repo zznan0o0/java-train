@@ -4,6 +4,7 @@ import org.junit.Test;
 import java.math.BigDecimal;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 public class StreamTest {
@@ -132,6 +133,18 @@ public class StreamTest {
         b.get(0).setA("456");
         System.out.println(aList);
         System.out.println(b);
+    }
+    @Test
+    public void testFlatMap(){
+        class A{
+            List<Integer> a = Stream.of(1,2,3).collect(Collectors.toList());
+        }
+
+        List<A> aList = Stream.of(new A(), new A(), new A()).collect(Collectors.toList());
+
+        System.out.println(aList.stream().map(x -> x.a).collect(Collectors.toList()));
+        System.out.println(aList.stream().map(x -> x.a).flatMap(Collection::stream).collect(Collectors.toList()));
+
     }
 
 }

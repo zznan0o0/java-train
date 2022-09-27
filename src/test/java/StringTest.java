@@ -2,7 +2,10 @@ import lombok.Data;
 import org.apache.commons.codec.binary.StringUtils;
 import org.junit.Test;
 
+import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
+import java.text.DecimalFormat;
+import java.text.MessageFormat;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -309,6 +312,25 @@ public class StringTest {
 //        System.out.println(s);
 //        System.out.println(Integer.valueOf("1000"));
 //        System.out.println(Integer.valueOf("0001"));
+    }
+    @Test
+    public void toI(){
+        System.out.println("");
+        System.out.println(String.format("%.2f*%04.2f*%04d", 123.12, 1.2, 1));
+
+        DecimalFormat g1=new DecimalFormat("0000.##");
+        System.out.println(g1.format(BigDecimal.valueOf(1.1)));
+        System.out.println(String.format("%.1f", 1.11));
+        //String message = MessageFormat.format("您好{0}，晚上好！您目前余额：{1,number,#.00}元，积分：{2}", "张三", "10.1", 10);
+        //System.out.println(message);
+
+        System.out.println(String.format("%.0f", 1f));
+    }
+    @Test
+    public void testLength(){
+        System.out.println("123".length());
+        System.out.println("12a".length());
+        System.out.println("12啊".length());
     }
 
 }

@@ -1,5 +1,7 @@
 import org.junit.Test;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class IntegerTest {
     @Test
     public void testNull(){
@@ -65,5 +67,14 @@ public class IntegerTest {
         int a = 1;
         int b = 3;
         System.out.println((int)Math.ceil((float)a / b));
+    }
+    @Test
+    public void test6(){
+        AtomicInteger idx = new AtomicInteger(0);
+        idx.getAndIncrement();
+        idx.getAndIncrement();
+        idx.getAndIncrement();
+        idx.getAndIncrement();
+        System.out.println(idx.get());
     }
 }
