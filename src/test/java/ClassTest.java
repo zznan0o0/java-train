@@ -166,5 +166,18 @@ public class ClassTest{
         A1 a1 = new A1();
         A1 a11 = new A1("");
     }
+    @Test
+    public void testNew(){
+        AInterface a = new AInterface(){
+            public void pp(){
+                System.out.println(1);
+            }
+            public void pp2(){
+                System.out.println(2);
+            }
+        };
+        a.pp();
+        a.pp2();
+    }
 }
 
