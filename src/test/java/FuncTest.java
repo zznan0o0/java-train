@@ -4,6 +4,8 @@ import org.junit.Test;
 import javax.sound.midi.Sequence;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class FuncTest {
     @Test
@@ -33,6 +35,14 @@ public class FuncTest {
         n1 = n1 + 1;
         System.out.println(n1);
     }
-
+    @Test
+    public void testForR(){
+        List<Integer> l = Stream.of(1,2,3).collect(Collectors.toList());
+        l.forEach(x -> {
+            System.out.println(x);
+            if(x.equals(4)) return;
+        });
+        System.out.println(4);
+    }
 
 }
