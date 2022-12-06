@@ -102,6 +102,12 @@ public class StreamTest {
         private String k = null;
         private String v = null;
     }
+    @Data
+    public static class MMM{
+        private String k = "k";
+        private String v = "v";
+    }
+
     @Test
     public void testToMap(){
         List<MM> mmList = new ArrayList<MM>(){{
@@ -112,6 +118,11 @@ public class StreamTest {
 
         Map<String, String> map = mmList.stream().collect(HashMap::new, (m, v) -> m.put(v.getK(), v.getV()), HashMap::putAll);
         System.out.println(map);
+        List<MMM> mmms = Stream.of(new MMM(), new MMM(), new MMM(),new MMM()).collect(Collectors.toList());
+        Map<String, String> mmap = mmms.stream().collect(HashMap::new, (m, v) -> m.put(v.getK(), v.getV()), HashMap::putAll);
+        System.out.println(mmap);
+
+
     }
     @Data
     public static class A{

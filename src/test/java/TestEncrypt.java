@@ -38,7 +38,11 @@ public class TestEncrypt {
     }
     @Test
     public void testHash(){
-        System.out.println(encryptThisString("123456"));
+        Long tenantId = 1275310302568779776L;
+        Long timestamp = 1664497817296L;
+        String secretKey = "O7U8Z1BjXTSYVoqxNOkpptnDTIEash82";
+        String s = String.format("tenantId=%s&timestamp=%s&secretKey=%s", tenantId, timestamp, secretKey);
+        System.out.println(encryptThisString(s));
 
     }
 }

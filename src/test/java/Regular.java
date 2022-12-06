@@ -17,4 +17,12 @@ public class Regular {
             System.out.println(m.group(1));
         }
     }
+    @Test
+    public void testTest(){
+        Pattern r = Pattern.compile("\\d");
+        System.out.println("a11a1a".matches(".*\\d.*"));
+        System.out.println("a11a1a".matches(".*[a-z].*"));
+        System.out.println("a11aA1a".matches(".*[A-Z].*"));
+        System.out.println("a11a$A1a".matches(".*\\W.*"));
+    }
 }

@@ -77,4 +77,20 @@ public class IntegerTest {
         idx.getAndIncrement();
         System.out.println(idx.get());
     }
+    @Test
+    public void testCNull(){
+        Integer a = null;
+        if(a > 0){
+            System.out.println(1);
+        }
+    }
+    @Test
+    public void testLE(){
+        Integer a = new Integer(1);
+        Integer b = new Integer(1);
+        System.out.println(a == b);
+        System.out.println(a.equals(b));
+        System.out.println(a >= b);
+
+    }
 }
