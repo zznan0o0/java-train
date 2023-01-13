@@ -157,5 +157,9 @@ public class StreamTest {
         System.out.println(aList.stream().map(x -> x.a).flatMap(Collection::stream).collect(Collectors.toList()));
 
     }
+    @Test
+    public void testJoin(){
+        System.out.println(Stream.of("1").collect(Collectors.joining(",")));
+    }
 
 }

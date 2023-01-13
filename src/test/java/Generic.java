@@ -1,3 +1,4 @@
+import lombok.Data;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -18,6 +19,15 @@ class GTest {
     }
 }
 
+@Data
+class Apple extends Fruit{
+    private Integer age;
+}
+
+@Data
+class Fruit{
+    private String name;
+}
 public class Generic{
     <T1, T2> List<T1> t(T1 a, T2 b){
         System.out.println(b);
@@ -31,5 +41,14 @@ public class Generic{
         GTest g = new GTest();
         System.out.println(g.t(1, "asdasdad"));
         System.out.println(g.t("ASasdasdads", 1));
+    }
+
+    @Test
+    public void testExtends(){
+
+    }
+
+    public <T extends Fruit> void testPrintName(T  t){
+        System.out.println(t.getName());
     }
 }

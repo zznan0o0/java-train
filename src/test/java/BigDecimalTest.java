@@ -30,4 +30,12 @@ public class BigDecimalTest {
     @Test
     public void testTen(){
     }
+    @Test
+    public void testNegate(){
+        BigDecimal a = BigDecimal.ZERO;
+        BigDecimal b = BigDecimal.ONE;
+        System.out.println(a.negate());
+        System.out.println(b.negate());
+        System.out.println(b.negate().negate());
+    }
 }

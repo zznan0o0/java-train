@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedHashMap;
 
@@ -47,5 +48,22 @@ public class DateTest {
             map.put(now.minusDays(i).format(dateTimeFormatter), i);
         }
         System.out.println(map);
+    }
+
+    public static Date getEndOfDay(Date date) {
+        if(date == null) return null;
+        Calendar calendarEnd = Calendar.getInstance();
+        calendarEnd.setTime(date);
+        calendarEnd.set(Calendar.HOUR_OF_DAY, 23);
+        calendarEnd.set(Calendar.MINUTE, 59);
+        calendarEnd.set(Calendar.SECOND, 59);
+
+        //防止mysql自动加一秒,毫秒设为0
+        calendarEnd.set(Calendar.MILLISECOND, 0);
+        return calendarEnd.getTime();
+    }
+    @Test
+    public void testEnd(){
+        System.out.println(getEndOfDay(new Date()));
     }
 }
