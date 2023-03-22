@@ -332,6 +332,10 @@ public class StringTest {
         System.out.println("12a".length());
         System.out.println("12啊".length());
     }
+    @Test
+    public void testJoinNull(){
+        System.out.println("123"+null);
+    }
 
 }
 

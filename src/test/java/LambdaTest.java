@@ -1,9 +1,8 @@
 import lombok.Data;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -65,6 +64,32 @@ public class LambdaTest {
     public static String print(String x){
         System.out.println(x);
         return x;
+    }
+
+    public void a1(String a){
+        System.out.println(a + "1");
+    }
+
+    public void a2(String a){
+        System.out.println(a + "2");
+    }
+
+    public String a3(String a, String b){
+        return a;
+//        System.out.println(a + "2");
+    }
+    @Test
+    public void testMap(){
+        String a = "a";
+        Map<String, Consumer<String>> m = new HashMap<>();
+        m.put("a1", this::a1);
+        m.put("a2", this::a2);
+//        m.put("a3", this::a3);
+
+        m.get("a1").accept(a);
+        m.get("a2").accept(a);
+//        m.get("a3").accept(a);
+
     }
 
 }
