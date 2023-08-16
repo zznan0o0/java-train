@@ -63,4 +63,20 @@ public class ExceptionTest {
 //            System.out.println(Arrays.toString(t.getStackTrace()));
         }
     }
+    @Test
+    public void f() throws Exception {
+        try {
+            System.out.println(1);
+            if(1 == 1) throw new Exception("1");
+        }
+        catch (Throwable e){
+            System.out.println(2);
+            System.out.println(e);
+            throw e;
+        }
+        finally {
+            System.out.println(3);
+            if(1 == 1) throw new Exception("3");
+        }
+    }
 }

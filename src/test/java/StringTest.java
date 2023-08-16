@@ -335,6 +335,13 @@ public class StringTest {
     @Test
     public void testJoinNull(){
         System.out.println("123"+null);
+        System.out.println(String.valueOf("123").equals(null));
+    }
+    @Test
+    public void testVar(){
+        String a = null, b = "ab";
+        System.out.println(a);
+        System.out.println(b);
     }
 
 }

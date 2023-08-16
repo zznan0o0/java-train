@@ -34,6 +34,11 @@ public class CompletableFutureTest {
         });
         //先执行这个
         System.out.println(3);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         Integer r = c.get();
         System.out.println(r);
         System.out.println(5);

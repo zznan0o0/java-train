@@ -1,3 +1,4 @@
+import lombok.Data;
 import org.junit.Test;
 
 
@@ -43,6 +44,15 @@ public class FuncTest {
             if(x.equals(4)) return;
         });
         System.out.println(4);
+    }
+    @Test
+    public void testField(){
+//        A::getName.
+//        System.out.println(String.valueOf(A::getName) );
+    }
+    @Data
+    public static class A{
+        private String name;
     }
 
 }
