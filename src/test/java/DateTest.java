@@ -1,4 +1,5 @@
 import common.utils.DateUnit;
+import org.joda.time.DateTime;
 import org.junit.Test;
 
 import java.text.ParseException;
@@ -65,5 +66,14 @@ public class DateTest {
     @Test
     public void testEnd(){
         System.out.println(getEndOfDay(new Date()));
+    }
+    @Test
+    public void test157(){
+        Date d = new Date(157L);
+        System.out.println(d.getYear());
+        System.out.println(d.getTime());
+        System.out.println(new Date(0, Calendar.JANUARY, 1).getTime() );
+
+        System.out.println( new DateTime(0));
     }
 }

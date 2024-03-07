@@ -99,4 +99,37 @@ public class ObjectTest {
     public void eqNull(){
         System.out.println(Objects.equals(null, null));
     }
+    @Test
+    public void testHashSet(){
+        Set<A> set = new HashSet<>();
+        set.add(new A(1L));
+        set.add(new A(1L));
+        set.add(new A(2L));
+        System.out.println(set);
+    }
+
+    class A implements Comparable<A>{
+
+        A(Long a){
+            this.a = a;
+        }
+        private final Long a;
+
+        public Long getA() {
+            return a;
+        }
+
+        public int compareTo(A o) {
+            return a.compareTo(o.getA());
+        }
+        @Override
+        public boolean equals(Object o) {
+            return a.equals(((A) o).getA());
+        }
+        @Override
+        public int hashCode() {
+            return Objects.hash(a);
+        }
+
+    }
 }
